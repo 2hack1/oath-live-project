@@ -138,7 +138,8 @@
 
         .certificate .logo1 {
             left: 20px;
-            background-image: url('vk.png'); /* Replace with your logo image URL */
+            border-radius: 50%;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s'); /* Replace with your logo image URL */
         }
 
         .certificate .logo2 {

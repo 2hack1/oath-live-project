@@ -31,9 +31,13 @@ header {
 	padding: 0 20px;
 }
 
-.header-container .emblem, .header-container .logo {
-	width: 100px;
-}
+.header-container .emblem,
+        .header-container .logo {
+            width: 80px; /* Logo size */
+            height: 80px; /* Logo size */
+           /* border-radius: 999px;*/
+          border-radius: 50%;
+        }
 
 .header-text {
 	text-align: center;
@@ -202,14 +206,14 @@ header {
 <body>
 	<header>
 		<div class="header-container">
-			<img src="vk.png" alt="Emblem" class="emblem">
+ <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">
 			<div class="header-text">
-				<h1>केन्द्रीय सतर्कता आयोग</h1>
-				<h2>CENTRAL VIGILANCE COMMISSION</h2>
-				<p>भ्रष्टाचार का विरोध करें; राष्ट्र के प्रति समर्पित रहें</p>
-				<p>SAY NO TO CORRUPTION; COMMIT TO THE NATION</p>
+				 <h1>विक्रांत विश्वविद्यालय और उमुगांडा पहल</h1>
+                <h2>Vikrant University and Umuganda Initiative</h2>
+                <h2>के साथ अपने पर्यावरण को साफ़ करें</h2>
+                <h2>with clean your environment </h2>
 			</div>
-			<img src="vk.png" alt="Logo" class="logo">
+ <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">
 		</div>
 	</header>
 	<%String nagrikMatch=(String)request.getAttribute("nagrikMatch"); %>

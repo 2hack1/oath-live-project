@@ -27,7 +27,10 @@ public class NagrikServiceImp implements NagrikService {
 	@Override
 	public List<Nagrik> getAll() {
 		return hibernateTemplate.loadAll(Nagrik.class);
+		
 	}
+	
+	
 
 	@Override
 	public Nagrik getByEmail(String email) {

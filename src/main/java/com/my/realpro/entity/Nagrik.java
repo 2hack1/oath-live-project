@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="nagrik")
+@Table(name="nagrika")
 public class Nagrik {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +19,7 @@ public class Nagrik {
 	private String city;
 	private String pin_code;
 	private String gender;
-
+    
 	public int getId() {
 		return id;
 	}

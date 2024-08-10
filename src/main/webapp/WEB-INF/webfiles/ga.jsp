@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form with Oath</title>
+    <title>Oath Registration with TTS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,7 +35,9 @@
         }
         .header-container .emblem,
         .header-container .logo {
-            width: 100px;
+            width: 80px; /* Logo size */
+            height: 80px; /* Logo size */
+            border-radius: 50%;
         }
         .header-text {
             text-align: center;
@@ -48,10 +51,6 @@
             margin: 5px 0;
             font-size: 20px;
         }
-        .header-text p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
         .container {
             background: #fff;
             padding: 40px;
@@ -61,7 +60,7 @@
             max-width: 600px;
             text-align: center;
             margin-top: 20px;
-            margin-bottom: 20px; /* Added bottom margin */
+            margin-bottom: 20px;
         }
         .container h1 {
             font-size: 2em;
@@ -109,7 +108,6 @@
             display: flex;
             justify-content: center;
             margin: 20px 0;
-            position: relative;
         }
         .step {
             display: flex;
@@ -177,20 +175,19 @@
 <body>
     <header>
         <div class="header-container">
-            <img src="vk.png" alt="Emblem" class="emblem">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">
             <div class="header-text">
-                <h1>केन्द्रीय सतर्कता आयोग</h1>
-                <h2>CENTRAL VIGILANCE COMMISSION</h2>
-                <p>भ्रष्टाचार का विरोध करें; राष्ट्र के प्रति समर्पित रहें</p>
-                <p>SAY NO TO CORRUPTION; COMMIT TO THE NATION</p>
+                <h1>विक्रांत विश्वविद्यालय और उमुगांडा पहल</h1>
+                <h2>Vikrant University and Umuganda Initiative</h2>
+                <h2>के साथ अपने पर्यावरण को साफ़ करें</h2>
+                <h2>With Clean Your Environment</h2>
             </div>
-            <img src="vk.png" alt="Logo" class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">
         </div>
     </header>
 
     <div class="container">
         <h1>Oath Registration</h1>
-        
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
@@ -217,72 +214,116 @@
             <button class="button" id="hindi-button" onclick="showOath('hindi')">Hindi में सुनें</button>
             <button class="button" id="english-button" onclick="showOath('english')">Listen in English</button>
             <button class="button stop-button" onclick="toggleSpeech()">Stop</button>
-         <a href="/Real_Time_Project_01/oathSubmit"><button type="submit" class="button submit-button">Submit</button></a>
+            <a href="/Real_Time_Project_01/oathSubmit"><button type="submit" class="button submit-button">Submit</button></a>
         </div>
     </div>
 
-    <script>
-        const hindiOath = "हम प्रतिज्ञा करते हैं कि हम ग्वालियर शहर की सड़कों, मैदानों एवं भवनों आदि पर कूड़ा नहीं फेंकेंगे, बल्कि कूड़ेदान में ही कूड़ा डालकर 'उमुगंडा-सामुदायिक स्वच्छता अभियान' को सफल बनाएंगे।";
-        const englishOath = "We pledge that we will not throw garbage on the roads, grounds and buildings etc. of Gwalior city, but will make 'Umuganda - Community Cleanliness Campaign' successful by throwing the garbage only in the dustbin.";
-        let isSpeaking = false;
-        let utterance;
+<script>
+    const hindiOath = "हम प्रतिज्ञा करते हैं कि हम ग्वालियर शहर की सड़कों, मैदानों एवं भवनों आदि पर कूड़ा नहीं फेंकेंगे, बल्कि कूड़ेदान में ही कूड़ा डालकर 'उमुगांडा पहल स्वच्छता अभियान' को सफल बनाएंगे।";
+    const englishOath = "We pledge that we will not throw garbage on the roads, grounds and buildings etc. of Gwalior city, but will make 'Umuganda  Initiative Cleanliness Campaign' successful by throwing the garbage only in the dustbin.";
+    let isSpeaking = false;
+    let utterance;
+    let words;
+    let highlightIndex = 0;
+    let highlightInterval;
 
-        function showOath(language) {
-            const oathText = document.getElementById('oath-text');
-            const checkboxGroup = document.getElementById('checkbox-group');
-            const hindiButton = document.getElementById('hindi-button');
-            const englishButton = document.getElementById('english-button');
-            const stopButton = document.querySelector('.stop-button');
-            const submitButton = document.querySelector('.submit-button');
-            const text = language === 'hindi' ? hindiOath : englishOath;
-            oathText.innerText = text;
-            oathText.style.display = 'block';
-            checkboxGroup.style.display = 'block'; // Show the checkbox
-            stopButton.style.display = 'inline-block'; // Show the stop button
+    function showOath(language) {
+        const oathText = document.getElementById('oath-text');
+        const checkboxGroup = document.getElementById('checkbox-group');
+        const hindiButton = document.getElementById('hindi-button');
+        const englishButton = document.getElementById('english-button');
+        const stopButton = document.querySelector('.stop-button');
+        const submitButton = document.querySelector('.submit-button');
+        const text = language === 'hindi' ? hindiOath : englishOath;
+        oathText.innerText = text;
+        oathText.style.display = 'block';
+        checkboxGroup.style.display = 'block'; // Show the checkbox
+        stopButton.style.display = 'inline-block'; // Show the stop button
       
-            if (language === 'hindi') {
-                englishButton.style.display = 'none';
-                hindiButton.style.display = 'none';
-            } else {
-                hindiButton.style.display = 'none';
-                englishButton.style.display = 'none';
-            }
-
-            readOath(text, language === 'hindi' ? 'hi-IN' : 'en-US');
+        if (language === 'hindi') {
+            englishButton.style.display = 'none';
+            hindiButton.style.display = 'none';
+        } else {
+            hindiButton.style.display = 'none';
+            englishButton.style.display = 'none';
         }
 
-        function readOath(text, lang) {
-            utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = lang;
-            utterance.onboundary = function(event) {
-                highlightText(event.charIndex, text);
-            };
-            speechSynthesis.speak(utterance);
+        readOath(text, language === 'hindi' ? 'hi-IN' : 'en-US');
+    }
+
+    function readOath(text, lang) {
+        utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.onstart = function() {
+            startHighlighting();
+        };
+        utterance.onend = function() {
+            stopHighlighting();
+        };
+        speechSynthesis.speak(utterance);
+        isSpeaking = true;
+    }
+
+    function startHighlighting() {
+        // Split text into words
+        const oathText = document.getElementById('oath-text');
+        words = oathText.innerText.split(' ');
+        highlightIndex = 0;
+
+        // Calculate time intervals
+        const totalDuration = utterance.duration || 10000; // Default duration if not available
+        const intervalDuration = totalDuration / words.length;
+
+        highlightInterval = setInterval(() => {
+            if (highlightIndex < words.length) {
+                highlightText(highlightIndex);
+                highlightIndex++;
+            } else {
+                clearInterval(highlightInterval);
+            }
+        }, intervalDuration);
+    }
+
+    function highlightText(index) {
+        const oathText = document.getElementById('oath-text');
+        const highlightedText = words.map((word, i) => {
+            return i === index ? `<span class="highlight">${word}</span>` : word;
+        }).join(' ');
+        oathText.innerHTML = highlightedText;
+    }
+
+    function stopHighlighting() {
+        clearInterval(highlightInterval);
+        const oathText = document.getElementById('oath-text');
+        oathText.innerHTML = oathText.innerText; // Remove highlighting
+    }
+
+    function toggleSpeech() {
+        if (isSpeaking) {
+            speechSynthesis.cancel();
+            isSpeaking = false;
+            stopHighlighting();
+        } else {
+            const oathText = document.getElementById('oath-text').innerText;
+            const language = oathText.includes('हम') ? 'hi-IN' : 'en-US';
+            readOath(oathText, language);
             isSpeaking = true;
         }
+    }
 
-        function highlightText(charIndex, text) {
-            const oathText = document.getElementById('oath-text');
-            const highlightedText = text.substring(0, charIndex) + '<span class="highlight">' + text.substring(charIndex) + '</span>';
-            oathText.innerHTML = highlightedText;
-        }
+    document.getElementById('agree').addEventListener('change', function() {
+        const submitButton = document.querySelector('.submit-button');
+        submitButton.style.display = this.checked ? 'inline-block' : 'none';
+    });
+</script>
 
-        function toggleSpeech() {
-            if (isSpeaking) {
-                speechSynthesis.cancel();
-                isSpeaking = false;
-            } else {
-                const oathText = document.getElementById('oath-text').innerText;
-                const language = oathText.includes('हम') ? 'hi-IN' : 'en-US';
-                readOath(oathText, language);
-                isSpeaking = true;
-            }
-        }
-
-        document.getElementById('agree').addEventListener('change', function() {
-            const submitButton = document.querySelector('.submit-button');
-            submitButton.style.display = this.checked ? 'inline-block' : 'none';
-        });
-    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+

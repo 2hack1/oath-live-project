@@ -25,9 +25,6 @@ import com.my.realpro.email.EmailSenderEX;
 import com.my.realpro.entity.Nagrik;
 
 
-
-
-
 public class FirstCla {
 	/*
 	@Autowired

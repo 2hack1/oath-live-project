@@ -1,13 +1,16 @@
 package com.my.realpro.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.SchedulingAwareRunnable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my.realpro.email.EmailSenderEX;
@@ -30,6 +33,8 @@ public class MyController {
 	private int otp;
 	private String emailMetch;
 	private String otpMetch;
+	private String pass;
+	private String emai;
 
 	public String getEmailMetch() {
 		return emailMetch;
@@ -97,12 +102,29 @@ public class MyController {
 		this.nagrikMatch = nagrikMatch;
 	}
 
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public String getEmai() {
+		return emai;
+	}
+
+	public void setEmai(String emai) {
+		this.emai = emai;
+	}
 	@GetMapping("/")
 	public String getHome() {
 		setNagrikStore(null);
 		setOrgNagrikStore(null);
 		setNagrikMatch("");
 		setMess("");
+		setEmai("");
+		setPass("");
 		return "index";
 	}
 
@@ -165,8 +187,10 @@ public class MyController {
 
 	@GetMapping("/oathSubmit")
 	public String getOath(Model m) {
+
 		if (getOrgNagrikStore() != null) {
 			orgNagerikService.saveOrgNagrik(getOrgNagrikStore());
+
 			System.out.println("OrgNagrik Run : " + getOrgNagrikStore());
 			return "redirect:/success";
 		} else if (getNagrikStore() != null) {
@@ -210,18 +234,62 @@ public class MyController {
 	public String getLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model m) {
 		Nagrik byEmailAndPassword2 = nagrikService.getByEmailAndPassword(email, password);
 		OrgNagrik byEmailAndPassword = orgNagerikService.getByEmailAndPassword(email, password);
-		if (byEmailAndPassword2 != null) {
+		
+		if (email.equals("admin123@gmail.com") && password.equals("123")) {
+			setPass(password);
+			setEmai(email);
+			return "redirect:/controll";
+		} else if (byEmailAndPassword2 != null) {
 			setNagrikStore(byEmailAndPassword2);
 			return "redirect:/success";
 		} else if (byEmailAndPassword != null) {
 			setOrgNagrikStore(byEmailAndPassword);
 			return "redirect:/success";
 		} else {
-			setMess("Email And Password Not Metch!");
+			setMess("email And Password Not Metch!");
 			return "redirect:/loginForm";
 		}
 
 	}
+
+	
+
+	// going to in admin pannel
+	@RequestMapping("/controll")
+	public String admin(Model m) {
+		if (getEmai().equals("admin123@gmail.com") && getPass().equals("123")) {
+			List<Nagrik> table1 = nagrikService.getAll();
+			m.addAttribute("userData", table1);
+			List<OrgNagrik> table2 = orgNagerikService.getAll();
+			m.addAttribute("userData2", table2);
+			return "control";
+		}
+		return "redirect:/";
+	}
+	
+	
+
+//	@RequestMapping("/nagrikTable")
+//	public String showNagrikData(Model m) {
+//		List<Nagrik> table1 = nagrikService.getAll();
+//		System.out.println("table1"+table1);
+//		m.addAttribute("userData",table1);
+//		return "control";
+//	}
+
+//	@RequestMapping("/orgnagrikTable")
+//	public String showOrgNagrikData(Model m) {
+//		
+//		List<OrgNagrik> table2 = orgNagerikService.getAll();
+//	
+//		System.out.println("table2"+ table2);
+//		m.addAttribute("userData",table2);
+//		return "redirect:/con";
+//	}
+//	@RequestMapping("/con")
+//	public String show() {
+//		return "control";
+//	}
 
 	@GetMapping("/forget")
 	public String setForgetPage(Model m) {
@@ -311,3 +379,7 @@ public class MyController {
 	}
 
 }
+
+//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//String formattedDate = currentDate.format(formatter);
+//System.out.println("Current Date: " + formattedDate);

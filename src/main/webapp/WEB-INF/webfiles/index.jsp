@@ -17,6 +17,8 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            
+            
         }
 
         .header-container {
@@ -27,10 +29,18 @@
             background-color: #4682B4; /* Steel blue background color for header */
         }
 
-        .header-container .emblem,
+        /* .header-container .emblem,
         .header-container .logo {
             width: 80px;
+        } */
+        .header-container .emblem,
+        .header-container .logo {
+            width: 80px; /* Logo size */
+            height: 80px; /* Logo size */
+           /* border-radius: 999px;*/
+          border-radius: 50%;
         }
+        
 
         .header-text {
             text-align: center;
@@ -293,14 +303,14 @@
 <body>
     <header>
         <div class="header-container">
-            <img src="/image/vk.jpg" alt="Emblem" class="emblem">
+ <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">
             <div class="header-text">
-                <h1>केन्द्रीय सतर्कता आयोग</h1>
-                <h2>CENTRAL VIGILANCE COMMISSION</h2>
-                <p>भ्रष्टाचार का विरोध करें; राष्ट्र के प्रति समर्पित रहें</p>
-                <p>SAY NO TO CORRUPTION; COMMIT TO THE NATION</p>
+                 <h1>विक्रांत विश्वविद्यालय और उमुगांडा पहल</h1>
+                <h2>Vikrant University and Umuganda Initiative</h2>
+                <h2>के साथ अपने पर्यावरण को साफ़ करें</h2>
+                <h2>with clean your environment </h2>
             </div>
-            <img src="../image/vk.png" alt="Logo" class="logo">
+ <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">
         </div>
     </header>
     <main>
@@ -320,15 +330,15 @@
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <div class="step-text">बुनियादी विवरण दर्ज कीजिये<br>ENTER BASIC DETAILS</div>
+                <div class="step-text">बुनियादी विवरण दर्ज कीजिये<br>ENTER BASIC DETAILS</div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <div class="step-text">प्रतिज्ञा की भाषा चुनिये<br>SELECT PLEDGE LANGUAGE</div>
+                <div class="step-text">भाषा चुनें और शपथ ले<br>CHOOSE LANGUAGE AND TAKE OATH</div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div class="step-text">पढ़ें और प्रतिज्ञा लें<br>READ & TAKE PLEDGE</div>
+                <div class="step-text">सर्टिफिकेट प्राप्त करें<br>GET CERTIFICATE</div>
                 </div>
             </div>
         </section>

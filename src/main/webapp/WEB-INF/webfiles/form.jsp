@@ -18,43 +18,47 @@
             padding: 0;
             background: #87CEEB; /* Light blue background color */
         }
-        header {
-            width: 100%;
-            background-color: #4682B4; /* Steel blue background color for header */
-            padding: 20px 0;
-            text-align: center;
-            color: white;
-            margin-bottom: 20px;
-        }
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 20px;
+            background-color: #4682B4; /* Steel blue background color for header */
         }
+
+     
         .header-container .emblem,
         .header-container .logo {
-            width: 100px;
+            width: 80px; /* Logo size */
+            height: 80px; /* Logo size */
+           /* border-radius: 999px;*/
+          border-radius: 50%;
         }
+        
+
         .header-text {
             text-align: center;
             line-height: 1.5;
+            color: white;
         }
+
         .header-text h1 {
             margin: 0;
             font-size: 24px;
         }
+
         .header-text h2 {
             margin: 5px 0;
             font-size: 20px;
         }
+
         .header-text p {
             margin: 5px 0;
             font-size: 16px;
         }
         .container {
             background: #fff;
-            padding: 40px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -179,18 +183,17 @@
     </style>
 </head>
 <body>
-<%String nagrikMatch=(String)request.getAttribute("nagrikMatch"); %>
+<%String nagrikMatch=(String)request.getAttribute("nagrikMatch");
+%>
     <header>
         <div class="header-container">
-            <img src="vk.png" alt="Emblem" class="emblem">
-            <div class="header-text">
-                <h1>केन्द्रीय सतर्कता आयोग</h1>
-                <h2>CENTRAL VIGILANCE COMMISSION</h2>
-                <p>भ्रष्टाचार का विरोध करें; राष्ट्र के प्रति समर्पित रहें</p>
-                <p>SAY NO TO CORRUPTION; COMMIT TO THE NATION</p>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">            <div class="header-text">
+                 <h1>विक्रांत विश्वविद्यालय और उमुगांडा पहल</h1>
+                <h2>Vikrant University and Umuganda Initiative</h2>
+                <h2>के साथ अपने पर्यावरण को साफ़ करें</h2>
+                <h2>with clean your environment </h2>
             </div>
-            <img src="vk.png" alt="Logo" class="logo">
-        </div>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqOLLQ9hAOSAhDu6viwcuO4cUxWgeKXo52Ug&s" alt="Emblem" class="emblem">        </div>
     </header>
     <div class="container">
      <h2 style="color:red;"><%=nagrikMatch %></h2>
@@ -202,11 +205,11 @@
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <div class="step-text">प्रतिज्ञा की भाषा चुनिये<br>SELECT PLEDGE LANGUAGE</div>
+                <div class="step-text">भाषा चुनें और शपथ ले<br>CHOOSE LANGUAGE AND TAKE OATH</div>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <div class="step-text">पढ़ें और प्रतिज्ञा लें<br>READ & TAKE PLEDGE</div>
+                <div class="step-text">सर्टिफिकेट प्राप्त करें<br>GET CERTIFICATE</div>
             </div>
         </div>
         <form action="nagrikData" method="post">

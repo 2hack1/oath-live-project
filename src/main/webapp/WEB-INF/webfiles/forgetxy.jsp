@@ -75,7 +75,7 @@
             
     <div class="container">
         <h1>Forgot Password</h1>
-        <h3><%=emailMessage%></h3>
+        <h3 style="color:red;"><%=emailMessage%></h3>
         <form action="forGetData" method="post">
             <div class="form-group">
                 <label for="email">Enter your email</label>
